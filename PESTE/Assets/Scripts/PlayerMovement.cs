@@ -5,50 +5,78 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 8f;
     private float jumpingPower = 16f;
-    private bool isFacingRight = true;
+    public Animator anim;
+    private float Move;
+    private Rigidbody2D rb;
+    public float speed;
+    public float jump;
+    public bool isFacingRight;
 
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
+    void Start()
+    {
+        isFacingRight = true;
+        rb = GetComponent<Rigidbody2D>();
+    }
 
+    
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
+        Move = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(Move * speed, rb.velocity.y);
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        if(Move >= 0.1f || Move <= -0.1f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
         }
 
-        Flip();
+        if(!isFacingRight && Move > 0f)
+        {
+            Flip();
+        }
+        else if(isFacingRight && Move< 0f)
+        {
+            Flip();
+        }
     }
 
-    private void FixedUpdate()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            anim.SetBool("isJumping", false);
+        }
     }
 
-    private bool IsGrounded()
+    private void OnCollisionExit2D(Collision2D other)
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            anim.SetBool("isJumping", false);
+        }
     }
+
+   
 
     private void Flip()
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
-        {
+       
+        
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
-        }
+        
     }
 }
