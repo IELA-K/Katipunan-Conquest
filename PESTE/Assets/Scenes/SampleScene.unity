@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 6
-  Target: {fileID: 1615307826}
+  Target: {fileID: 1351383631}
   AlarmLight: {fileID: 1446275305}
   Gun: {fileID: 869179108}
   bullet: {fileID: 5565424960403610543, guid: 98e517717e8cf5449ad0009333151cfd, type: 3}
@@ -1987,7 +1987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 5
-  Target: {fileID: 1615307826}
+  Target: {fileID: 1351383631}
   AlarmLight: {fileID: 1834404451}
   Gun: {fileID: 717157374}
   bullet: {fileID: 5565424960403610543, guid: 98e517717e8cf5449ad0009333151cfd, type: 3}
@@ -2002,7 +2002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786515301}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -8.37, y: -1.92, z: 0}
+  m_LocalPosition: {x: -9.53, y: -1.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3740,7 +3740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 5
-  Target: {fileID: 1615307826}
+  Target: {fileID: 1351383631}
   AlarmLight: {fileID: 24391043}
   Gun: {fileID: 2060660271}
   bullet: {fileID: 5565424960403610543, guid: 98e517717e8cf5449ad0009333151cfd, type: 3}
